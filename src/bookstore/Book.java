@@ -1,4 +1,4 @@
-package BookStore;
+package bookstore;
 
 
 /**
@@ -51,8 +51,5 @@ public abstract class Book {
     
     public abstract void showBookDetails(Book b);
     
-    
-
-
 
 }

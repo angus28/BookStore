@@ -1,4 +1,4 @@
-package BookStore;
+package bookstore;
 /**
  * Created by Angus on 11/03/2017.
  */
