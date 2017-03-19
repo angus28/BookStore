@@ -70,6 +70,15 @@ public class EngineeringBook extends Book {
     }
      
      public void showBookDetails(Book b){
+        EngineeringBook engineer = (EngineeringBook) b;
         
+        String details = "Author: " + engineer.getAuthor() + "\n" +
+                                   "Title: " + engineer.getTitle() + "\n" +
+                                   "Publisher: " + engineer.getPublisher() + "\n" +
+                                   "Selling Price of the Book: $ " + engineer.getSellingPriceOfBook() + " AUD \n" +
+                                   "BookID: " + engineer.bookID() + "\n" +
+                                   "Book Stock: " + engineer.getQuantity() + "\n" +
+                                   "Book Category: " + engineer.getCategory() + "\n \n";
+        System.out.println(details);
     }
 }

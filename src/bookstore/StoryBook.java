@@ -71,6 +71,16 @@ public class StoryBook extends Book {
     }
      
      public void showBookDetails(Book b){
-     
+        StoryBook story = (StoryBook) b;
+        
+        String details = "Author: " + story.getAuthor() + "\n" +
+                                   "Title: " + story.getTitle() + "\n" +
+                                   "Publisher: " + story.getPublisher() + "\n" +
+                                   "Selling Price of the Book: $ " + story.getSellingPriceOfBook() + " AUD \n" +
+                                   "BookID: " + story.bookID() + "\n" +
+                                   "Book Stock: " + story.getQuantity() + "\n" +
+                                   "Book Category: " + story.getCategory() + "\n \n";
+        System.out.println(details);
     }
 }
+
