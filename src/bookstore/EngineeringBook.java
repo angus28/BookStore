@@ -1,5 +1,10 @@
 package bookstore;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Scanner;
+
 /**
  * Created by Angus on 11/03/2017.
  */
@@ -11,10 +16,45 @@ public class EngineeringBook extends Book {
     private String publisher;
     private double sellingPriceOfBook;
     private int quantity;
-    private String bookID;    
+    private String bookID;  
+
+    private Date dateSold; 
+    private int bookSoldCounter;
+    private int bookReservedCounter;
     
+    // setter and getters
+    private void setBookCategory(String category){
+        this.bookCategory = category;
+    }
+    
+    private String getBookCategory(){
+        return bookCategory;
+   }
+    
+    private Date getDateSold(){
+        return dateSold;
+    }
+    private void setDateSold(Date date){
+        dateSold = date;
+    }
    
-    // getters and setters
+    private int getBookSoldCounter(){
+        return bookSoldCounter;
+    }
+    private void setBookSoldCounter(int bookSoldCounter){
+        this.bookSoldCounter = bookSoldCounter;
+    }
+    
+    private int getBookReservedCounter(){
+        return bookReservedCounter;
+    }
+    private void setBookReservedCounter(int bookReservedCounter){
+        this.bookReservedCounter = bookReservedCounter;
+    }
+    
+    private void setBookID(String bookID){
+        this.bookID = bookID;
+    }
     private String getBookID(){
         return bookID;
     }
@@ -26,14 +66,29 @@ public class EngineeringBook extends Book {
         this.quantity = quantity;
     }
 
+    private void setAuthor(String author){
+        this.author = author;
+    }
     private String getAuthor(){
         return author;
+    }
+    
+    private void setTitle(String title){
+        this.title = title;
     }
     private String getTitle(){
         return title;
     }
+    
+    private void setPublisher(String publisher){
+        this.publisher = publisher;
+    }
     private String getPublisher(){
         return publisher;
+    }
+    
+    private void setSellingPriceOfBook(double sellingPriceOfBook){
+        this.sellingPriceOfBook = sellingPriceOfBook;
     }
     private double getSellingPriceOfBook(){
         return sellingPriceOfBook;
@@ -41,45 +96,17 @@ public class EngineeringBook extends Book {
     private String getCategory(){
         return bookCategory;
     }
+
     
     // constructors
-     public EngineeringBook( String author, String title, String publisher, double sellingPriceOfBook, int quantity, String bookID){
-        this.bookCategory = "Engineering";
-        this.bookID =  bookID;
-        this.author = author;
-        this.title = title;
-        this.publisher = publisher;
-        this.sellingPriceOfBook = sellingPriceOfBook;
-        this.quantity = quantity;
-    }
-     
-     
-     //public processigning methods
-   
-     
-    public void assignQuantity(int quantity){
-        setQuantity(quantity);
-    }
-    
-    public int quantity(){
-        return getQuantity();
-    }
-    
-  
-     public String bookID(){
-        return getBookID();
-    }
-     
-     public void showBookDetails(Book b){
-        EngineeringBook engineer = (EngineeringBook) b;
+    public EngineeringBook(){
+        Scanner scanner = new Scanner(System.in);
         
-        String details = "Author: " + engineer.getAuthor() + "\n" +
-                                   "Title: " + engineer.getTitle() + "\n" +
-                                   "Publisher: " + engineer.getPublisher() + "\n" +
-                                   "Selling Price of the Book: $ " + engineer.getSellingPriceOfBook() + " AUD \n" +
-                                   "BookID: " + engineer.bookID() + "\n" +
-                                   "Book Stock: " + engineer.getQuantity() + "\n" +
-                                   "Book Category: " + engineer.getCategory() + "\n \n";
-        System.out.println(details);
+        setBookCategory("Engineering");
+        setBookDetails();
     }
+     
+    // public processing methods
+   
 }
+

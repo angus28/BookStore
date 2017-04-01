@@ -1,11 +1,12 @@
 package bookstore;
 
-
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Scanner;
 
 /**
- *
- * @author angusmiller
+ * Created by Angus on 11/03/2017.
  */
 public class KidsBook extends Book {
     // fields
@@ -17,29 +18,77 @@ public class KidsBook extends Book {
     private int quantity;
     private String bookID;  
 
+    private Date dateSold; 
+    private int bookSoldCounter;
+    private int bookReservedCounter;
     
+    // setter and getters
+    private void setBookCategory(String category){
+        this.bookCategory = category;
+    }
     
-  
-    // getters and setters
+    private String getBookCategory(){
+        return bookCategory;
+   }
+    
+    private Date getDateSold(){
+        return dateSold;
+    }
+    private void setDateSold(Date date){
+        dateSold = date;
+    }
+   
+    private int getBookSoldCounter(){
+        return bookSoldCounter;
+    }
+    private void setBookSoldCounter(int bookSoldCounter){
+        this.bookSoldCounter = bookSoldCounter;
+    }
+    
+    private int getBookReservedCounter(){
+        return bookReservedCounter;
+    }
+    private void setBookReservedCounter(int bookReservedCounter){
+        this.bookReservedCounter = bookReservedCounter;
+    }
+    
+    private void setBookID(String bookID){
+        this.bookID = bookID;
+    }
     private String getBookID(){
         return bookID;
     }
-    
+
     private int getQuantity(){
         return quantity;
-   }
+    }
     private void setQuantity(int quantity){
         this.quantity = quantity;
-   }
+    }
 
+    private void setAuthor(String author){
+        this.author = author;
+    }
     private String getAuthor(){
         return author;
+    }
+    
+    private void setTitle(String title){
+        this.title = title;
     }
     private String getTitle(){
         return title;
     }
+    
+    private void setPublisher(String publisher){
+        this.publisher = publisher;
+    }
     private String getPublisher(){
         return publisher;
+    }
+    
+    private void setSellingPriceOfBook(double sellingPriceOfBook){
+        this.sellingPriceOfBook = sellingPriceOfBook;
     }
     private double getSellingPriceOfBook(){
         return sellingPriceOfBook;
@@ -47,47 +96,17 @@ public class KidsBook extends Book {
     private String getCategory(){
         return bookCategory;
     }
-    
-    
-     
-    // constructors
-   public KidsBook( String author, String title, String publisher, double sellingPriceOfBook, int quantity, String bookID){
-        this.bookCategory = "Kids";
-        this.bookID =  bookID;
-        this.author = author;
-        this.title = title;
-        this.publisher = publisher;
-        this.sellingPriceOfBook = sellingPriceOfBook;
-        this.quantity = quantity;
-    }
-   
-   
-   // public processing methods
 
-     
-    public void assignQuantity(int quantity){
-        setQuantity(quantity);
-    }
     
-    public int quantity(){
-        return getQuantity();
-    }
-    
-     
-     public String bookID(){
-        return getBookID();
-    }
-     
-     public void showBookDetails(Book b){
-        KidsBook kids = (KidsBook) b;
+    // constructors
+    public KidsBook(){
+        Scanner scanner = new Scanner(System.in);
         
-        String details = "Author: " + kids.getAuthor() + "\n" +
-                                   "Title: " + kids.getTitle() + "\n" +
-                                   "Publisher: " + kids.getPublisher() + "\n" +
-                                   "Selling Price of the Book: $ " + kids.getSellingPriceOfBook() + " AUD \n" +
-                                   "BookID: " + kids.bookID() + "\n" +
-                                   "Book Stock: " + kids.getQuantity() + "\n" +
-                                   "Book Category: " + kids.getCategory() + "\n \n";
-        System.out.println(details);
+        setBookCategory("Kids");
+        setBookDetails();
     }
+     
+    // public processing methods
+ 
 }
+

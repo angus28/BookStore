@@ -1,4 +1,10 @@
 package bookstore;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Scanner;
+
 /**
  * Created by Angus on 11/03/2017.
  */
@@ -11,9 +17,44 @@ public class StoryBook extends Book {
     private double sellingPriceOfBook;
     private int quantity;
     private String bookID;  
-    
+
+    private Date dateSold; 
+    private int bookSoldCounter;
+    private int bookReservedCounter;
     
     // setter and getters
+    private void setBookCategory(String category){
+        this.bookCategory = category;
+    }
+    
+    private String getBookCategory(){
+        return bookCategory;
+   }
+    
+    private Date getDateSold(){
+        return dateSold;
+    }
+    private void setDateSold(Date date){
+        dateSold = date;
+    }
+   
+    private int getBookSoldCounter(){
+        return bookSoldCounter;
+    }
+    private void setBookSoldCounter(int bookSoldCounter){
+        this.bookSoldCounter = bookSoldCounter;
+    }
+    
+    private int getBookReservedCounter(){
+        return bookReservedCounter;
+    }
+    private void setBookReservedCounter(int bookReservedCounter){
+        this.bookReservedCounter = bookReservedCounter;
+    }
+    
+    private void setBookID(String bookID){
+        this.bookID = bookID;
+    }
     private String getBookID(){
         return bookID;
     }
@@ -25,14 +66,29 @@ public class StoryBook extends Book {
         this.quantity = quantity;
     }
 
+    private void setAuthor(String author){
+        this.author = author;
+    }
     private String getAuthor(){
         return author;
+    }
+    
+    private void setTitle(String title){
+        this.title = title;
     }
     private String getTitle(){
         return title;
     }
+    
+    private void setPublisher(String publisher){
+        this.publisher = publisher;
+    }
     private String getPublisher(){
         return publisher;
+    }
+    
+    private void setSellingPriceOfBook(double sellingPriceOfBook){
+        this.sellingPriceOfBook = sellingPriceOfBook;
     }
     private double getSellingPriceOfBook(){
         return sellingPriceOfBook;
@@ -40,47 +96,17 @@ public class StoryBook extends Book {
     private String getCategory(){
         return bookCategory;
     }
-    
-    
+
     
     // constructors
-    public StoryBook( String author, String title, String publisher, double sellingPriceOfBook, int quantity, String bookID){
-        this.bookCategory = "Story";
-        this.bookID =  bookID;
-        this.author = author;
-        this.title = title;
-        this.publisher = publisher;
-        this.sellingPriceOfBook = sellingPriceOfBook;
-        this.quantity = quantity;
-    }
-    
-    
-    // public processing methods
-     
-    public void assignQuantity(int quantity){
-        setQuantity(quantity);
-    }
-    
-    public int quantity(){
-        return getQuantity();
-    }
-   
-     
-     public String bookID(){
-        return getBookID();
-    }
-     
-     public void showBookDetails(Book b){
-        StoryBook story = (StoryBook) b;
+    public StoryBook(){
+        Scanner scanner = new Scanner(System.in);
         
-        String details = "Author: " + story.getAuthor() + "\n" +
-                                   "Title: " + story.getTitle() + "\n" +
-                                   "Publisher: " + story.getPublisher() + "\n" +
-                                   "Selling Price of the Book: $ " + story.getSellingPriceOfBook() + " AUD \n" +
-                                   "BookID: " + story.bookID() + "\n" +
-                                   "Book Stock: " + story.getQuantity() + "\n" +
-                                   "Book Category: " + story.getCategory() + "\n \n";
-        System.out.println(details);
+        setBookCategory("Story");
+        setBookDetails();
     }
+     
+    // public processing methods
+    
 }
 
