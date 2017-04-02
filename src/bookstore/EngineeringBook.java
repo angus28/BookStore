@@ -17,7 +17,7 @@ public class EngineeringBook extends Book {
     private double sellingPriceOfBook;
     private int quantity;
     private String bookID;  
-
+    private boolean reservedFlag;
     private Date dateSold; 
     private int bookSoldCounter;
     private int bookReservedCounter;
@@ -30,7 +30,12 @@ public class EngineeringBook extends Book {
     private String getBookCategory(){
         return bookCategory;
    }
-    
+   private boolean getReservedFlag(){
+        return reservedFlag;
+    }
+    private void setReservedFlag(boolean reservedFlag){
+        this.reservedFlag = reservedFlag;
+    }
     private Date getDateSold(){
         return dateSold;
     }

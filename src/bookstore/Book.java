@@ -23,22 +23,55 @@ public abstract class Book {
     private int quantity;
     private String bookISBN;
 
-    private Date dateSold; 
-    private String customerSurname;
-    private String customerID;
-    private int bookSoldCounter;
-    private int bookReservedCounter;
+    private Calendar dateSold; 
+    private Customer customer;
+    private int bookSoldCounter = 0;
     
+    private int bookReservedCounter = 0;
+    private boolean reservedFlag = false;
+    private Date dateReservedExpiry = null;
+    private Calendar dateReserved = null;
+    private Calendar datePurchased = null;
   
     // setter and getters
-  
-    private Date getDateSold(){
-        return dateSold;
+    private void setCustomer(Customer customer){
+        this.customer = customer;
     }
-    private void setDateSold(Date date){
-        dateSold = date;
+    private Customer getCustomer(){
+        return customer;
+    }
+    private void setDatePurchased(Calendar purchaseDate){
+        this.datePurchased= purchaseDate;
+    }
+    private Calendar getDatePurchased(){
+        return datePurchased;
+    }
+    private void setDateReserved(Calendar reserved){
+        this.dateReserved = reserved;
+    }
+    private Calendar getDateReserved(){
+        return dateReserved;
+    }
+    private void setDateReservedExpiry(Date dateReservedExpiry){
+        this.dateReservedExpiry = dateReservedExpiry;
+    }
+    private Date getDateReservedExpiry(){
+        return dateReservedExpiry;
     }
     
+    private boolean getReservedFlag(){
+        return reservedFlag;
+    }
+    private void setReservedFlag(boolean reservedFlag){
+        this.reservedFlag = reservedFlag;
+    }
+    
+    private Calendar getDateSold(){
+        return dateSold;
+    }
+    private void setDateSold(Calendar date){
+        dateSold = date;
+    }
     
     private int getBookSoldCounter(){
         return bookSoldCounter;
@@ -109,6 +142,12 @@ public abstract class Book {
     
   
    // public processing methods
+    public Calendar datePurchased(){
+        return datePurchased;
+    } 
+    public Customer customer(){
+        return customer;
+    }
     public String bookCategory(){
         return bookCategory;
     }
@@ -136,38 +175,54 @@ public abstract class Book {
     public double sellingPriceOfBook(){
         return sellingPriceOfBook;
     }
-    
-   
-
-    public ArrayList<Object> addSoldBookDetails(){
-        ArrayList<Object> soldBookDetails = new ArrayList <Object>();
-        Date date = new Date();
-        soldBookDetails.add(date);     
-        soldBookDetails.add("123-123"); // dummy text need to implement global random generator
-        soldBookDetails.add(getTitle());
-        soldBookDetails.add(getSellingPriceOfBook());
-       
-       return soldBookDetails;
+    public boolean reservedFlag(){
+        return reservedFlag;
+    }
+    public Calendar dateSold(){
+        return dateSold;
+    }
+    public Calendar dateReserved(){
+        return dateReserved;
+    }
+    public Date dateReservedExpiry(){
+        return dateReservedExpiry;
     }
     
-    public ArrayList<Object> addReservedBookDetails(){
-        ArrayList<Object> reservedBookDetails = new ArrayList <Object>();
+
+    public void addSoldBookDetails(Customer customer){
+       Calendar date = Calendar.getInstance();
+       setDateSold(date); 
+       
+       // Add customer how reserved the book
+        setCustomer(customer);
+    }
+    
+
+    public void addPurchaseBookDetails(Customer customer){
+        Calendar date = Calendar.getInstance();
+        setDatePurchased(date); 
+       
+        // Add customer how reserved the book
+        setCustomer(customer);
+    }
+    
+    public void addReservedBookDetails(Customer customer){
+        // flag book as reserved as true 
+        setReservedFlag(true);
         
         // Add start and expiry date for reservation
-        int noOfDays = 14; // two weeks
-        Calendar startDate = Calendar.getInstance(); // set start date to time at statement exceution
-        reservedBookDetails.add(startDate); // add start date to collection details
+        Calendar cal = Calendar.getInstance(); // set start date to time at statement exceution
+        setDateReserved(cal); 
         
+        // Add customer how reserved the book
+        setCustomer(customer);
                  
-        startDate.add(Calendar.DAY_OF_YEAR, noOfDays); // add two weeks to startDate
-        Date expireDate = startDate.getTime(); // store expiry date to Date object
-        reservedBookDetails.add(expireDate);     
-        
-        // Add book id and title
-        reservedBookDetails.add("123-123"); // dummy text need to implement global random generator
-        reservedBookDetails.add(getTitle());
+        cal.add(Calendar.DAY_OF_YEAR, 14); // add two weeks to startDate
+        Date expire = cal.getTime();
+        setDateReservedExpiry(expire);     
        
-       return reservedBookDetails;
+       
+ 
     }
     
     
@@ -181,7 +236,7 @@ public abstract class Book {
         
         Scanner scanner = new Scanner(System.in);
         UserInputValidation validate = new UserInputValidation();
-        
+        System.out.println("To add a book to the store please enter the following information.");
         // Author
         input = validate.name(input, "author's");
         setAuthor(input);

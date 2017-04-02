@@ -17,12 +17,18 @@ public class StoryBook extends Book {
     private double sellingPriceOfBook;
     private int quantity;
     private String bookID;  
-
+    private boolean reservedFlag;
     private Date dateSold; 
     private int bookSoldCounter;
     private int bookReservedCounter;
     
     // setter and getters
+    private boolean getReservedFlag(){
+        return reservedFlag;
+    }
+    private void setReservedFlag(boolean reservedFlag){
+        this.reservedFlag = reservedFlag;
+    }
     private void setBookCategory(String category){
         this.bookCategory = category;
     }

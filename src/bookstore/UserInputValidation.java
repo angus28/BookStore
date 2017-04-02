@@ -79,7 +79,7 @@ public class UserInputValidation {
        
        boolean found = false;
        while (!found){
-       System.out.print("Enter the book ISBN:"); 
+       System.out.print("Enter the book ISBN (The id format is 0-000-00000-0 where the 0's are any digit from 1 - 9):"); 
        input = scanner.next();
        Matcher matcher = pattern.matcher(input);
       
@@ -95,6 +95,29 @@ public class UserInputValidation {
        return input;
     }
     
+    public String id(String input){
+    Scanner scanner = new Scanner(System.in); 
+       
+       Pattern pattern = Pattern.compile("[0-9]-[0-9]{3}-[0-9]{5}-[0-9]"); // regex pattern for ISBN
+       
+       boolean found = false;
+       while (!found){
+       System.out.print("Enter the Customers ID (The id format is 0-000-00000-0 where the 0's are any digit from 1 - 9):"); 
+       input = scanner.next();
+       Matcher matcher = pattern.matcher(input);
+      
+       // check if input matchs pattern
+       
+       while(matcher.find()){
+           return input;
+       }
+       
+       System.out.println("Looks like you have enter a invalid input. The id format is 0-000-00000-0 where the 0's are any digit from 1 - 9" );
+      
+       }
+       return input;
+    }
+    
     public String name(String name, String nameType){
         Scanner scanner = new Scanner(System.in); 
         
@@ -103,7 +126,7 @@ public class UserInputValidation {
         boolean found = false;
         
         while (!found){
-        System.out.print("Enter the " + nameType + " name: ");
+        System.out.print("Enter your " + nameType + " name: ");
         name = scanner.next();
         Matcher matcher = pattern.matcher(name);
         
