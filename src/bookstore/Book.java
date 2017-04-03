@@ -1,5 +1,7 @@
 package bookstore;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -178,6 +180,9 @@ public abstract class Book {
     public boolean reservedFlag(){
         return reservedFlag;
     }
+    public void changeReservedFlag(boolean reservedFlag){
+        this.reservedFlag = reservedFlag;
+    }
     public Calendar dateSold(){
         return dateSold;
     }
@@ -216,9 +221,11 @@ public abstract class Book {
         
         // Add customer how reserved the book
         setCustomer(customer);
-                 
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         cal.add(Calendar.DAY_OF_YEAR, 14); // add two weeks to startDate
         Date expire = cal.getTime();
+        dateFormat.format(expire);
         setDateReservedExpiry(expire);     
        
        

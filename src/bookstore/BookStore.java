@@ -1,6 +1,9 @@
 package bookstore;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.UUID;
@@ -294,23 +297,20 @@ public class BookStore {
     
     // Book Reserving
     private int reserveBook(Customer customer, String bookID, String category){
-        System.out.println("THe customer value is" + customer);
         Book book = null;
         if (category == "kids")
             book = new KidsBook();
         else if (category == "story")
             book = new StoryBook();
-        else if (category == "engineering")
+        else 
             book = new EngineeringBook();
  
  
         
         // Add book details and customer for the book
-        try {
-            book.addReservedBookDetails(customer);
-        } catch (NullPointerException ex){
-            ex.printStackTrace();
-        }
+        bookInventory.add(book);
+        book.addReservedBookDetails(customer);
+
        
         return 0;
     }
@@ -319,6 +319,20 @@ public class BookStore {
     ////////////////////////////////////////
     ///////         NOTIFY         ///////  
     //////////////////////////////////////
+    public void checkAllBooksReservedExpiry(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date todaysDate = new Date();
+        dateFormat.format(todaysDate);
+                
+        for (Book b:bookInventory){
+            int compare = (b.dateReservedExpiry()).compareTo(todaysDate);
+            System.out.println(b.reservedFlag());
+            if (compare == -1){
+                b.changeReservedFlag(false);
+                
+            }
+        }
+    }
     public void notifyCustomerWhenBookAvailable(Book b, String customerID){
         if(bookInventory.contains(b)){
             System.out.print("The book " + b.title() +" you reserved is available!");
@@ -345,10 +359,12 @@ public class BookStore {
     public int allReservedBooks() {
         System.out.println("Here are all the books reserved:");
         for (Book b:bookInventory){
+            System.out.println(b.reservedFlag());
             if (b.reservedFlag()){
+                System.out.println("The following book is reserved by " + customer.firstname()  + " " + customer.surname() );
                 showBookDetails(b);
                 Customer customer = b.customer();
-                System.out.println("This book is reserved by " + customer.firstname() + " " + customer.surname() +"\nCustomers details:\n" + customer.ID());
+                System.out.println("Customers details:\n" + customer.ID());
             }
         }       
      return 0;  
